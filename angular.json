@@ -99,6 +99,23 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "version": 2
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "australianwinemarket:build:production",
+              "serveTarget": "australianwinemarket:serve:production"
+            },
+            "development": {
+              "buildTarget": "australianwinemarket:build:development",
+              "serveTarget": "australianwinemarket:serve:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }
