@@ -1,0 +1,42 @@
+.login-button {
+    height: 50px;
+    margin: 8px 0;
+    width: 100%;
+}
+
+.section-label {
+    margin-top: 8px;
+}
+
+.center-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.login-panel {
+    max-width: 500px;
+    flex: 1;
+    margin: 8px;
+}
+
+.info-panel {
+    flex: 1;
+    margin: 8px;
+}
+
+@media (max-width: 600px) {
+    .container {
+        flex-direction: column;
+    }
+}
