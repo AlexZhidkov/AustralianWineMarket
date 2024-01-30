@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Auth, AuthProvider, FacebookAuthProvider, GoogleAuthProvider, OAuthProvider, User, createUserWithEmailAndPassword, sendPasswordResetEmail, signInAnonymously, signInWithEmailAndPassword, signInWithPopup, updateProfile } from '@angular/fire/auth';
-import { Firestore, doc, getDoc, setDoc, updateDoc } from '@angular/fire/firestore';
+import { Firestore, doc, getDoc, setDoc, updateDoc, collection } from '@angular/fire/firestore';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Analytics, logEvent, setUserId } from '@angular/fire/analytics';
@@ -118,20 +118,20 @@ export class LoginComponent {
     setUserId(this.analytics, user.uid);
     logEvent(this.analytics, 'login', { uid: user.uid, providerId: user.providerData[0]?.providerId })
     const dbUserRef = doc(this.firestore, 'users', user.uid);
-    getDoc(dbUserRef).then(async (doc) => {
-      if (doc.exists()) {
-        const dbUser = doc.data() as AppUser;
+    getDoc(dbUserRef).then(async (userDoc) => {
+      if (userDoc.exists()) {
+        const dbUser = userDoc.data() as AppUser;
         if (!dbUser.photoURL) {
           await updateDoc(dbUserRef, { photoURL: user.photoURL });
         }
       } else {
+        const newOrgId = doc(collection(this.firestore, 'orgs')).id;
         await setDoc(dbUserRef, {
           uid: user.uid,
           displayName: user.displayName ?? this.name,
           email: user.email ?? this.email,
           photoURL: user.photoURL,
-          org: 'DEMO',
-          orgs: ['DEMO'],
+          org: newOrgId,
         });
       }
       this.route.queryParams.subscribe(params => {
