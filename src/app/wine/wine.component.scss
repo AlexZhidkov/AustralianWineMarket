@@ -1,0 +1,21 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.image-panel {
+    max-width: 500px;
+    flex: 1;
+    margin: 8px;
+}
+
+.info-panel {
+    flex: 1;
+    margin: 8px;
+}
+
+@media (max-width: 600px) {
+    .container {
+        flex-direction: column;
+    }
+}

@@ -41,7 +41,6 @@ export class UserProfileComponent implements OnInit {
     if (!this.org) {
       setDoc(this.orgRef, { name: '' });
     }
-
     this.isLoading = false;
   }
 

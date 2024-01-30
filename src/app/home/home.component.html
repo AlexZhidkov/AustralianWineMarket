@@ -5,10 +5,16 @@
             Wine List
         </mat-card-title>
     </mat-card-header>
+    <mat-card-actions align="end">
+        <button mat-raised-button color="accent" (click)="addWine()">
+            <mat-icon inline=true>add_circle</mat-icon>
+            Add
+        </button>
+    </mat-card-actions>
 
     <mat-nav-list>
         <a mat-list-item [routerLink]="['/wine', wine.id]" *ngFor="let wine of wines">
-            <img matListItemAvatar [src]="wine.icon" referrerpolicy="no-referrer">
+            <img matListItemAvatar [src]="wine.imageUrl" referrerpolicy="no-referrer">
             <h3 matListItemTitle>
                 {{wine.title}}
             </h3>
