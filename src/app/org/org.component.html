@@ -1,0 +1,9 @@
+<mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+<mat-card *ngIf="org">
+    <mat-card-header>
+        <mat-card-title>
+            {{org.name}}
+        </mat-card-title>
+    </mat-card-header>
+    <app-wine-list [wines]="wines"></app-wine-list>
+</mat-card>

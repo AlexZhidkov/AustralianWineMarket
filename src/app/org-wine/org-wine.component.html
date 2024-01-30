@@ -1,0 +1,21 @@
+<mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+
+<mat-card *ngIf="wine">
+    <mat-card-header>
+        <mat-card-title>
+            {{wine.title}}
+        </mat-card-title>
+        <mat-card-subtitle>
+            {{wine.type}}
+        </mat-card-subtitle>
+    </mat-card-header>
+    <img style="max-width: 200px;" [src]="wine.imageUrl" alt="">
+    <mat-card-content>
+        <p>{{wine.description}}</p>
+        <mat-form-field>
+            <mat-label>Price</mat-label>
+            <input matInput name="price" [ngModel]="orgWine.price" (ngModelChange)="updateOrgWine({price: $event})"
+                data-cy="price">
+        </mat-form-field>
+    </mat-card-content>
+</mat-card>
